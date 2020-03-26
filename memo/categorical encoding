@@ -24,8 +24,6 @@ encoded = ks[cat_features].apply(encoder.fit_transform)
 data_cols = ['goal', 'hour', 'day', 'month', 'year', 'outcome']
 baseline_data = ks[data_cols].join(encoded)
 
-
-
 # Defining  functions that will help us test our encodings
 import lightgbm as lgb
 from sklearn import metrics
@@ -62,6 +60,9 @@ def train_model(train, valid):
 train, valid, _ = get_data_splits(baseline_data)
 bst = train_model(train, valid)
 
+
+
+"""Count Encoding(Count encoding replaces each categorical value with the number of times it appears in the dataset)"""
 import category_encoders as ce
 cat_features = ['category', 'currency', 'country']
 count_enc = ce.CountEncoder()
@@ -72,6 +73,9 @@ data = baseline_data.join(count_encoded.add_suffix("_count"))
 train, valid, test = get_data_splits(data)
 bst = train_model(train, valid)
 
+
+
+"""Target Encoding(Target encoding replaces a categorical value with the average value of the target for that value of the feature.)"""
 import category_encoders as ce
 cat_features = ['category', 'currency', 'country']
 
@@ -91,7 +95,9 @@ train.head()
 bst = train_model(train, valid)
 
 
-#CatBoost encoding
+
+"""CatBoost encoding(This is similar to target encoding in that it's based on the target probablity for a given value. 
+However with CatBoost, for each row, the target probability is calculated only from the rows before it."""
 cat_features = ['category', 'currency', 'country']
 target_enc = ce.CatBoostEncoder(cols=cat_features)
 
