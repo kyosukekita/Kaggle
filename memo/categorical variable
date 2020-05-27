@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 """Drop categorical variables"""
 #Melbourne Housing dataset, Get list of categorical variables
 s = (X_train.dtypes == 'object')
