@@ -1,15 +1,25 @@
+#!/usr/bin/python
+
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
+from sklearn.model_selection import cross_val_score
+
 
 my_pipeline = Pipeline(steps=[('preprocessor', SimpleImputer()),
                               ('model', RandomForestRegressor(n_estimators=50,random_state=0)])
-                             
-from sklearn.model_selection import cross_val_score
-
+                  
 # Multiply by -1 since sklearn calculates *negative* MAE
-scores = -1 * cross_val_score(my_pipeline, X, y,
-                              cv=5,
-                              scoring='neg_mean_absolute_error')
-
+scores = -1 * cross_val_score(my_pipeline, X, y, cv=5,scoring='neg_mean_absolute_error')
 print("MAE scores:\n", scores)
+
+#cvの部分はジェネレータを指定することも可能
+from sklearn.model_selection import KFold
+kf = KFold(n_splits = 5,shuffle = True,random_state = 0)
+splitter = kf.split(X,y)
+cv=splitter
+
+from sklearn.model_selection import StratifiedKFold
+skf=StratifiedKFold(n_splits=5, shuffle=True, random_state=0)
+splitter = kf.split(X,y)
+cv=splitter
