@@ -1,4 +1,4 @@
-#How to deal with missing values(https://www.kaggle.com/alexisbcook/missing-values)
+#!/usr/bin/python
 
 """Drop columns with missing values"""
 # Get names of columns with missing values
@@ -11,7 +11,12 @@ reduced_X_valid = X_valid.drop(cols_with_missing, axis=1)
 print("MAE from Approach 1 (Drop columns with missing values):")
 print(score_dataset(reduced_X_train, reduced_X_valid, y_train, y_valid))
 
+
+
+
+
 """Imputation"""
+from sklearn.impute import SimpleImputer
 my_imputer = SimpleImputer()
 imputed_X_train = pd.DataFrame(my_imputer.fit_transform(X_train))
 imputed_X_valid = pd.DataFrame(my_imputer.transform(X_valid))
@@ -22,6 +27,10 @@ imputed_X_valid.columns = X_valid.columns
 
 print("MAE from Approach 2 (Imputation):")
 print(score_dataset(imputed_X_train, imputed_X_valid, y_train, y_valid))
+
+
+
+
 
 """An Extension to Imputation"""
 # Make copy to avoid changing original data (when imputing)
@@ -44,10 +53,3 @@ imputed_X_valid_plus.columns = X_valid_plus.columns
 
 print("MAE from Approach 3 (An Extension to Imputation):")
 print(score_dataset(imputed_X_train_plus, imputed_X_valid_plus, y_train, y_valid))
-
-"""Why did imputation perform better than dropping the columns"""
-print(X_train.shape)
-
-# Number of missing values in each column of training data
-missing_val_count_by_column = (X_train.isnull().sum())
-print(missing_val_count_by_column[missing_val_count_by_column > 0])
