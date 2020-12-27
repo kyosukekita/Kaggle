@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 """image"""
 #Choose image to work with
 from os.path import join
