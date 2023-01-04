@@ -1,0 +1,7 @@
+https://www.kaggle.com/code/geraseva/gemme
+https://www.kaggle.com/code/kvigly55/plldt-ddg-demask-sasa
+https://www.kaggle.com/code/viktorfairuschin/thermostability-prediction-with-rasp-model
+https://www.kaggle.com/code/seyered/eda-novozymes-enzyme-stability
+https://www.kaggle.com/code/cdeotte/train-data-contains-mutations-like-test-data#Train-Data-Contains-Mutations
+https://www.kaggle.com/code/oxzplvifi/deletion-specific-ensemble
+https://www.kaggle.com/code/cdeotte/difference-features-lb-0-600
